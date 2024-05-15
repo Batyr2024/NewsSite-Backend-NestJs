@@ -15,14 +15,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PostService = void 0;
 const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
-const tags_posts_model_1 = require("../tags-posts/tags-posts.model");
+const post_model_1 = require("./models/post.model");
+const tag_service_1 = require("../tags/tag.service");
+const tags_posts_service_1 = require("../tags-posts/tags-posts.service");
 let PostService = class PostService {
-    constructor(tagsPostsRepository) {
-        this.tagsPostsRepository = tagsPostsRepository;
+    constructor(postRepository, tagService, tagsPostsService) {
+        this.postRepository = postRepository;
+        this.tagService = tagService;
+        this.tagsPostsService = tagsPostsService;
     }
     async createPost(postObject) {
         try {
-            await this.tagsPostsRepository.create(postObject);
+            let Post;
+            const post = await this.postRepository.create(postObject)
+                .then((data) => { Post = data; });
+            const tag = this.tagService.getIdTagsByPost(postObject.tag)
+                .then(async (Tags) => {
+                if (Tags !== undefined) {
+                    Tags.forEach(async (elementId) => await this.tagsPostsService.createAssociationTagsPosts(Post.id, elementId));
+                }
+            });
             return 'Post was successfully created';
         }
         catch (error) {
@@ -33,7 +45,7 @@ let PostService = class PostService {
 exports.PostService = PostService;
 exports.PostService = PostService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, sequelize_1.InjectModel)(tags_posts_model_1.TagsPosts)),
-    __metadata("design:paramtypes", [Object])
+    __param(0, (0, sequelize_1.InjectModel)(post_model_1.Post)),
+    __metadata("design:paramtypes", [Object, tag_service_1.TagService, tags_posts_service_1.TagsPostsService])
 ], PostService);
 //# sourceMappingURL=post.service.js.map

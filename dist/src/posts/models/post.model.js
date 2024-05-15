@@ -33,10 +33,6 @@ __decorate([
     __metadata("design:type", Number)
 ], Post.prototype, "idPostUser", void 0);
 __decorate([
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER }),
-    __metadata("design:type", Number)
-], Post.prototype, "idTags", void 0);
-__decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING }),
     __metadata("design:type", String)
 ], Post.prototype, "picture", void 0);

@@ -9,6 +9,7 @@ import { Tag } from './tags/models/tag.model';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { TagsPostsModule } from './tags-posts/tags-posts.module';
 import { TagsPosts } from './tags-posts/tags-posts.model';
+import { TagModule } from './tags/tag.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { TagsPosts } from './tags-posts/tags-posts.model';
       inject: [ConfigService]
     }),
     TagsPostsModule,
+    TagModule,
     UserModule,
     PostModule,
     AuthenticationModule

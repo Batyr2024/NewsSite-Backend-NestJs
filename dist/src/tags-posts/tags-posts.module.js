@@ -10,6 +10,7 @@ exports.TagsPostsModule = void 0;
 const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
 const tags_posts_model_1 = require("./tags-posts.model");
+const tags_posts_service_1 = require("./tags-posts.service");
 let TagsPostsModule = class TagsPostsModule {
 };
 exports.TagsPostsModule = TagsPostsModule;
@@ -19,7 +20,8 @@ exports.TagsPostsModule = TagsPostsModule = __decorate([
             sequelize_1.SequelizeModule.forFeature([tags_posts_model_1.TagsPosts])
         ],
         controllers: [],
-        providers: [],
+        providers: [tags_posts_service_1.TagsPostsService],
+        exports: [tags_posts_service_1.TagsPostsService]
     })
 ], TagsPostsModule);
 //# sourceMappingURL=tags-posts.module.js.map
