@@ -11,6 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Post = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
+const tags_posts_model_1 = require("../../tags-posts/tags-posts.model");
+const tag_model_1 = require("../../tags/models/tag.model");
 let Post = class Post extends sequelize_typescript_1.Model {
 };
 exports.Post = Post;
@@ -39,6 +41,7 @@ __decorate([
     __metadata("design:type", String)
 ], Post.prototype, "picture", void 0);
 exports.Post = Post = __decorate([
+    (0, sequelize_typescript_1.BelongsToMany)(() => tag_model_1.Tag, () => tags_posts_model_1.TagsPosts),
     (0, sequelize_typescript_1.Table)({ tableName: 'post' })
 ], Post);
 //# sourceMappingURL=post.model.js.map

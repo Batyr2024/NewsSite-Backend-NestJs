@@ -11,14 +11,14 @@ const common_1 = require("@nestjs/common");
 const post_service_1 = require("./post.service");
 const post_controller_1 = require("./post.controller");
 const sequelize_1 = require("@nestjs/sequelize");
-const post_model_1 = require("./models/post.model");
+const tags_posts_model_1 = require("../tags-posts/tags-posts.model");
 let PostModule = class PostModule {
 };
 exports.PostModule = PostModule;
 exports.PostModule = PostModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            sequelize_1.SequelizeModule.forFeature([post_model_1.Post])
+            sequelize_1.SequelizeModule.forFeature([tags_posts_model_1.TagsPosts])
         ],
         controllers: [post_controller_1.PostController],
         providers: [post_service_1.PostService],

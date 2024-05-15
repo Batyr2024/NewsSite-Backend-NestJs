@@ -1,5 +1,7 @@
-import { Post } from './models/post.model';
+import { CreatePostData } from 'src/posts/data/CreatePost.data';
+import { TagsPosts } from 'src/tags-posts/tags-posts.model';
 export declare class PostService {
-    private postRepository;
-    constructor(postRepository: typeof Post);
+    private tagsPostsRepository;
+    constructor(tagsPostsRepository: typeof TagsPosts);
+    createPost(postObject: CreatePostData): Promise<string>;
 }

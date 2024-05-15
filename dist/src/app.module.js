@@ -16,6 +16,8 @@ const user_model_1 = require("./users/models/user.model");
 const post_model_1 = require("./posts/models/post.model");
 const tag_model_1 = require("./tags/models/tag.model");
 const authentication_module_1 = require("./authentication/authentication.module");
+const tags_posts_module_1 = require("./tags-posts/tags-posts.module");
+const tags_posts_model_1 = require("./tags-posts/tags-posts.model");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -34,10 +36,11 @@ exports.AppModule = AppModule = __decorate([
                     password: configService.get('DB_PASSWORD'),
                     port: Number(configService.get('DB_PORT')),
                     database: configService.get('DB_NAME'),
-                    models: [user_model_1.User, post_model_1.Post, tag_model_1.Tag]
+                    models: [user_model_1.User, post_model_1.Post, tag_model_1.Tag, tags_posts_model_1.TagsPosts]
                 }),
                 inject: [config_1.ConfigService]
             }),
+            tags_posts_module_1.TagsPostsModule,
             user_module_1.UserModule,
             post_module_1.PostModule,
             authentication_module_1.AuthenticationModule

@@ -15,16 +15,25 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PostService = void 0;
 const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
-const post_model_1 = require("./models/post.model");
+const tags_posts_model_1 = require("../tags-posts/tags-posts.model");
 let PostService = class PostService {
-    constructor(postRepository) {
-        this.postRepository = postRepository;
+    constructor(tagsPostsRepository) {
+        this.tagsPostsRepository = tagsPostsRepository;
+    }
+    async createPost(postObject) {
+        try {
+            await this.tagsPostsRepository.create(postObject);
+            return 'Post was successfully created';
+        }
+        catch (error) {
+            return `ERROR: ${error}`;
+        }
     }
 };
 exports.PostService = PostService;
 exports.PostService = PostService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, sequelize_1.InjectModel)(post_model_1.Post)),
+    __param(0, (0, sequelize_1.InjectModel)(tags_posts_model_1.TagsPosts)),
     __metadata("design:paramtypes", [Object])
 ], PostService);
 //# sourceMappingURL=post.service.js.map
