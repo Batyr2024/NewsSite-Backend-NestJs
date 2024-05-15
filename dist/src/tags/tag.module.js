@@ -12,16 +12,19 @@ const tag_service_1 = require("./tag.service");
 const tag_controller_1 = require("./tag.controller");
 const sequelize_1 = require("@nestjs/sequelize");
 const tag_model_1 = require("./models/tag.model");
+const post_model_1 = require("../posts/models/post.model");
+const tags_posts_model_1 = require("../tags-posts/tags-posts.model");
 let TagModule = class TagModule {
 };
 exports.TagModule = TagModule;
 exports.TagModule = TagModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            sequelize_1.SequelizeModule.forFeature([tag_model_1.Tag])
+            sequelize_1.SequelizeModule.forFeature([tag_model_1.Tag, post_model_1.Post, tags_posts_model_1.TagsPosts])
         ],
         controllers: [tag_controller_1.TagController],
         providers: [tag_service_1.TagService],
+        exports: [tag_service_1.TagService]
     })
 ], TagModule);
 //# sourceMappingURL=tag.module.js.map

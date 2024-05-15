@@ -3,12 +3,12 @@ import { Post } from "src/posts/models/post.model";
 import { Tag } from "src/tags/models/tag.model";
 
 interface TagsPostsCreation {
-    idPost:number,
+    idPosts:number,
     idTags:number, 
 }
 
 
-@Table({tableName:'tags_posts'})
+@Table({tableName:'tags_posts',createdAt:false,updatedAt:false})
 export class TagsPosts extends Model <TagsPosts, TagsPostsCreation>{
     @Column({type:DataType.INTEGER, unique:true,autoIncrement:true, allowNull: false, primaryKey: true})
     id: number;

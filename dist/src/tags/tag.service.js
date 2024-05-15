@@ -20,6 +20,43 @@ let TagService = class TagService {
     constructor(tagRepository) {
         this.tagRepository = tagRepository;
     }
+    async searchTags(userTags) {
+        let newTags = [];
+        let idTags = [];
+        await this.tagRepository.findAll()
+            .then((data) => {
+            let dataIdTag = [];
+            let dataNameTag = [];
+            data.forEach((element) => { dataNameTag.push(element.dataValues.nameTag); dataIdTag.push(element.dataValues.id); });
+            userTags.forEach((element) => {
+                if (dataNameTag.includes(element) === false) {
+                    newTags.push(element);
+                }
+                else {
+                    let tagIndexById = dataNameTag.findIndex((tag) => tag === element);
+                    idTags.push(dataIdTag[tagIndexById]);
+                }
+            });
+        })
+            .catch((error) => `ERROR: ${error}`);
+        return { newTags, idTags };
+    }
+    async getIdTagsByPost(userTags) {
+        this.searchTags(userTags)
+            .then(async (data) => {
+            if (data.newTags.length !== 0) {
+                await this.tagRepository.bulkCreate(data.newTags)
+                    .then((dataNewTags) => {
+                    dataNewTags.forEach((element) => {
+                        data.idTags.push(element.dataValues.id);
+                    });
+                })
+                    .catch((error) => `ERROR: ${error}`);
+            }
+            return data.idTags;
+        })
+            .catch((error) => `ERROR: ${error}`);
+    }
 };
 exports.TagService = TagService;
 exports.TagService = TagService = __decorate([

@@ -12,7 +12,6 @@ export declare class Post extends Model<Post, PostCreation> {
     content: string;
     topic: string;
     idPostUser: number;
-    idTags: number;
     picture: string;
 }
 export {};

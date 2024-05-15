@@ -31,6 +31,6 @@ __decorate([
     __metadata("design:type", Number)
 ], TagsPosts.prototype, "idTags", void 0);
 exports.TagsPosts = TagsPosts = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: 'tags_posts' })
+    (0, sequelize_typescript_1.Table)({ tableName: 'tags_posts', createdAt: false, updatedAt: false })
 ], TagsPosts);
 //# sourceMappingURL=tags-posts.model.js.map

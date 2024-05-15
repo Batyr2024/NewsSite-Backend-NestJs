@@ -19,7 +19,7 @@ let TagController = class TagController {
 };
 exports.TagController = TagController;
 exports.TagController = TagController = __decorate([
-    (0, common_1.Controller)('tag'),
+    (0, common_1.Controller)('tags'),
     __metadata("design:paramtypes", [tag_service_1.TagService])
 ], TagController);
 //# sourceMappingURL=tag.controller.js.map
